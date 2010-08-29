@@ -1,5 +1,7 @@
-#Finds dirs with flac files in them
+#!/usr/bin/env ruby
 
+#Finds dirs with flac files in them
+def findFlacFiles()
 flacdirs = Array.new
 Dir.foreach(".") { |file| \
   if(File.directory?(file))
@@ -13,9 +15,11 @@ Dir.foreach(".") { |file| \
     }
   end
   }
+  return flacdirs;
+end
 
 # Clears out ones that already have wv files in a subfolder
-
+def clearWVDirs(flacdirs)
 finalFlacDirs = Array.new
 
   flacdirs.each { |fd| \
@@ -34,5 +38,11 @@ finalFlacDirs = Array.new
           finalFlacDirs << fd
         end
     }
+  return finalFlacDirs
+end
 
-finalFlacDirs.each { |ffd| Dir.chdir(ffd); `~/Projects/GitHub/ruby/Z-Converter/converter.rb`; Dir.chdir("..") } 
+def processDirs(finalFlacDirs)
+  finalFlacDirs.each { |ffd| Dir.chdir(ffd); `~/bin/zconv`; Dir.chdir("..") } 
+end
+
+processDirs(clearWVDirs(findFlacFiles()))
