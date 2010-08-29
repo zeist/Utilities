@@ -1,0 +1,2 @@
+#!/bin/bash
+curl -# -F userfile1=@$1 http://kimag.es/upload.php?action=upload && curl -# http://kimag.es/allimg.php | grep http://s2.kimag.es/thumbs | cut -d '"' -f12 | sed s/thumbs/share/

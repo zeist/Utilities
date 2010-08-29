@@ -1,0 +1,2 @@
+#!/bin/bash
+convert -resize 250x250! -quality 80 "$1/*\(front\)*.jpg" "$1/folder.jpg"

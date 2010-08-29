@@ -1,0 +1,3 @@
+#!/bin/bash
+test=$(wget -q -O - https://secure.informaction.com/ipecho/)
+echo $test
